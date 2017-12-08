@@ -1,18 +1,20 @@
 package my.domain.di.controllers;
 
 import my.domain.di.services.GreetingService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class MyController {
+public class ConstructorInjectedController {
 
     private GreetingService greetingService;
 
-    public MyController(GreetingService greetingService) {
+    public ConstructorInjectedController(@Qualifier("constructorGreetingService") GreetingService greetingService) {
         this.greetingService = greetingService;
     }
 
-    public String hello() {
+    public String sayHello() {
         return greetingService.sayGreeting();
     }
+
 }
